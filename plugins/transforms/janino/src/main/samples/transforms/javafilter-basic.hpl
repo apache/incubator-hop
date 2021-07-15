@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+Licensed to the Apache Software Foundation (ASF) under one or more
+contributor license agreements.  See the NOTICE file distributed with
+this work for additional information regarding copyright ownership.
+The ASF licenses this file to You under the Apache License, Version 2.0
+(the "License"); you may not use this file except in compliance with
+the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+-->
+<pipeline>
+  <info>
+    <name>javafilter-basic</name>
+    <name_sync_with_filename>Y</name_sync_with_filename>
+    <description/>
+    <extended_description/>
+    <pipeline_version/>
+    <pipeline_type>Normal</pipeline_type>
+    <parameters>
+    </parameters>
+    <capture_transform_performance>N</capture_transform_performance>
+    <transform_performance_capturing_delay>1000</transform_performance_capturing_delay>
+    <transform_performance_capturing_size_limit>100</transform_performance_capturing_size_limit>
+    <created_user>-</created_user>
+    <created_date>2021/07/15 20:20:05.686</created_date>
+    <modified_user>-</modified_user>
+    <modified_date>2021/07/15 20:20:05.686</modified_date>
+    <key_for_session_key/>
+    <is_key_private>N</is_key_private>
+  </info>
+  <notepads>
+    <notepad>
+      <note>Passes rows to a "Matching" or "Non-Matching" stream, based on a java expression.</note>
+      <xloc>128</xloc>
+      <yloc>80</yloc>
+      <width>477</width>
+      <heigth>27</heigth>
+      <fontname>Noto Sans</fontname>
+      <fontsize>11</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>14</fontcolorred>
+      <fontcolorgreen>58</fontcolorgreen>
+      <fontcolorblue>90</fontcolorblue>
+      <backgroundcolorred>201</backgroundcolorred>
+      <backgroundcolorgreen>232</backgroundcolorgreen>
+      <backgroundcolorblue>251</backgroundcolorblue>
+      <bordercolorred>14</bordercolorred>
+      <bordercolorgreen>58</bordercolorgreen>
+      <bordercolorblue>90</bordercolorblue>
+    </notepad>
+  </notepads>
+  <order>
+    <hop>
+      <from>Test Data</from>
+      <to>Java filter</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Java filter</from>
+      <to>Output Matching</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Java filter</from>
+      <to>Output Non-matching</to>
+      <enabled>Y</enabled>
+    </hop>
+  </order>
+  <transform>
+    <name>Java filter</name>
+    <type>JavaFilter</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <send_true_to>Output Matching</send_true_to>
+    <send_false_to>Output Non-matching</send_false_to>
+    <condition>id > 2 &amp;&amp; id &lt; 5 </condition>
+    <attributes/>
+    <GUI>
+      <xloc>320</xloc>
+      <yloc>208</yloc>
+    </GUI>
+  </transform>
+  <transform>
+    <name>Test Data</name>
+    <type>DataGrid</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <set_empty_string>N</set_empty_string>
+        <length>-1</length>
+        <name>id</name>
+        <precision>-1</precision>
+        <type>Integer</type>
+      </field>
+      <field>
+        <set_empty_string>N</set_empty_string>
+        <length>-1</length>
+        <name>desc</name>
+        <precision>-1</precision>
+        <type>String</type>
+      </field>
+    </fields>
+    <data>
+      <line>
+        <item>1</item>
+        <item>one</item>
+      </line>
+      <line>
+        <item>2</item>
+        <item>two</item>
+      </line>
+      <line>
+        <item>3</item>
+        <item>three</item>
+      </line>
+      <line>
+        <item>4</item>
+        <item>four</item>
+      </line>
+      <line>
+        <item>5</item>
+        <item>five</item>
+      </line>
+    </data>
+    <attributes/>
+    <GUI>
+      <xloc>128</xloc>
+      <yloc>208</yloc>
+    </GUI>
+  </transform>
+  <transform>
+    <name>Output Matching</name>
+    <type>Dummy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <attributes/>
+    <GUI>
+      <xloc>512</xloc>
+      <yloc>160</yloc>
+    </GUI>
+  </transform>
+  <transform>
+    <name>Output Non-matching</name>
+    <type>Dummy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <attributes/>
+    <GUI>
+      <xloc>512</xloc>
+      <yloc>288</yloc>
+    </GUI>
+  </transform>
+  <transform_error_handling>
+  </transform_error_handling>
+  <attributes/>
+</pipeline>
